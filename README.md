@@ -1,7 +1,7 @@
 # FIITter
 ## Twitter for FIIT
 
-This app was bootstrapped with [spring initializr](https://start.spring.io/) with the following dependencies:
+This Spring Boot (2.2.7) app was bootstrapped with [spring initializr](https://start.spring.io/) with the following dependencies:
 
 * Spring Boot DevTools
 * Spring Web
@@ -9,3 +9,5 @@ This app was bootstrapped with [spring initializr](https://start.spring.io/) wit
 * Spring Security
 * Spring Data JPA
 * PostgreSQL Driver
+
+FIITter is a Maven project using Java 14.
