@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<form th:action="@{/users}" th:object="${user}" method="POST" enctype="utf8">
+    <div>
+        <label for="username" class="control-label">Username</label>
+        <input th:field="*{username}" id="username"/>
+        <!--<p th:each="error: ${#fields.errors('username')}"
+           th:text="${error}">Validation error</p>-->
+    </div>
+
+    <div>
+        <label for="email" class="control-label">Email</label>
+        <input type="email" th:field="*{email}" id="email"/>
+        <!--<p th:each="error : ${#fields.errors('email')}"
+           th:text="${error}">Validation error</p>-->
+    </div>
+
+    <div>
+        <label for="password" class="control-label">Password</label>
+        <input type="password" th:field="*{password}" id="password"/>
+        <!--<p th:each="error : ${#fields.errors('password')}"
+           th:text="${error}">Validation error</p>-->
+    </div>
+
+    <button type="submit" class="btn btn-success">Register</button>
+</form>
+
+<a th:href="@{/users/login}">Login</a>
+
+</body>
+</html>
