@@ -24,7 +24,6 @@ public class User implements UserDetails {
     private long id;
 
     @Column(nullable = false, unique = true)
-
     private String username;
 
     @Column(nullable = false)
@@ -32,6 +31,9 @@ public class User implements UserDetails {
 
     @Column(nullable = false, unique = true)
     private String email;
+
+    @OneToMany(mappedBy = "users")
+    private Set<Post> posts;
 
     // getters and setters
     public long getId() {
