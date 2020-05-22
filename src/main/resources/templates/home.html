@@ -13,8 +13,18 @@
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
 
+
+    <form th:action="@{/posts}" th:object="${newPost}" method="POST" enctype="utf8">
+        <div>
+            <label for="content" class="control-label">Content</label>
+            <textarea th:field="*{content}" id="content" name="content"> </textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+
     <table>
-        <th:block th:each="post : ${posts}">
+        <th:block th:each="post : ${currentUser.posts}">
             <tr>
                 <td th:text="${post.content}">...</td>
             </tr>

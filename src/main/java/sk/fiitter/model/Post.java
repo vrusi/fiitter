@@ -16,8 +16,8 @@ public class Post {
     @Column(nullable = false)
     private LocalDateTime dateCreated;
 
-    @ManyToOne()
-    @JoinColumn(name="user_id", nullable=false)
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "id")
     private User user;
 
     // constructors

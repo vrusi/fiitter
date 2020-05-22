@@ -18,11 +18,14 @@ public class SecurityServiceImpl implements SecurityService {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
+    @Autowired
+    private UserRepository userRepository;
+
     private static final Logger logger = LoggerFactory.getLogger(SecurityServiceImpl.class);
 
     @Override
     public String findLoggedInUsername() {
-        Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
+        Object userDetails = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (userDetails instanceof UserDetails) {
             return ((UserDetails) userDetails).getUsername();
@@ -33,10 +36,10 @@ public class SecurityServiceImpl implements SecurityService {
 
     @Override
     public User findLoggedInUser() {
-        Object user = SecurityContextHolder.getContext().getAuthentication().getDetails();
+        Object userDetails = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        if (user instanceof User) {
-            return (User) user;
+        if (userDetails instanceof UserDetails) {
+            return userRepository.findByUsername(((UserDetails) userDetails).getUsername());
         }
 
         return null;
