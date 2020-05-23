@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import sk.fiitter.auth.SecurityService;
+import sk.fiitter.auth.UserRepository;
 import sk.fiitter.auth.UserService;
 import sk.fiitter.auth.UserValidator;
 import sk.fiitter.model.Post;
@@ -21,6 +22,9 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/users/registration")
     public String registration(Model model) {
@@ -62,5 +66,35 @@ public class UserController {
         model.addAttribute("currentUser", user);
         model.addAttribute("newPost", new Post());
         return "home";
+    }
+
+    @GetMapping(value = "/profiles/{username}")
+    public String getUserBySimplePathWithPathVariable(
+            @PathVariable("username") String username, Model model) {
+
+        var user = userRepository.findByUsername(username);
+        model.addAttribute("user", user);
+
+        boolean isFollowedAlready = user.getFollowers().stream().anyMatch(follower -> follower.getUsername().equals(securityService.findLoggedInUsername()));
+        String action = isFollowedAlready ? "Unfollow" : "Follow";
+        model.addAttribute("action", action);
+        return "profile";
+    }
+
+    @PostMapping(value = "/profiles/{username}/follow")
+    public String follow(@PathVariable("username") String username){
+        var user = userRepository.findByUsername(username);
+        user.getFollowers().add(securityService.findLoggedInUser());
+        userRepository.save(user);
+        return "redirect:/profiles/" + username;
+    }
+
+
+    @PostMapping(value = "/profiles/{username}/unfollow")
+    public String unfollow(@PathVariable("username") String username){
+        var user = userRepository.findByUsername(username);
+        user.getFollowers().remove(securityService.findLoggedInUser());
+        userRepository.save(user);
+        return "redirect:/profiles/" + username;
     }
 }

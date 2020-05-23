@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+<title th:text="${user.username}">...</title>
+</head>
+<body>
+<div>
+    <p th:text="${user.username}">...</p>
+    <p th:text="${user.email}"></p>
+
+    <form sec:authorize="isAuthenticated()" th:action="${action} == 'Follow' ? @{~/profiles/__${user.username}__/follow} : @{~/profiles/__${user.username}__/unfollow}" method="POST">
+        <button type="submit" th:text="${action}">...</button>
+    </form>
+
+    <table>
+        <th:block th:each="post : ${user.posts}">
+            <tr>
+                <td th:text="${post.content}">...</td>
+            </tr>
+            <tr>
+                <td th:text="${post.dateCreated}">...</td>
+            </tr>
+        </th:block>
+    </table>
+
+    <p>Followed by:</p>
+    <table>
+        <th:block th:each="follower : ${user.followers}">
+            <tr>
+                <td th:text="${follower.username}">...</td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+</body>
+</html>
