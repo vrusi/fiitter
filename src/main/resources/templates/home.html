@@ -23,7 +23,7 @@
     </form>
 
     <table>
-        <th:block th:each="post : ${currentUser.posts}">
+        <th:block th:each="post : ${posts}">
             <tr>
                 <td th:text="${post.content}">...</td>
             </tr>
