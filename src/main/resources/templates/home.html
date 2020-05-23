@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div sec:authorize="isAuthenticated()">
+    <div sec:authentication="name"></div>
+    <a onclick="document.forms['logoutForm'].submit()">Logout</a>
+
+    <form id="logoutForm" method="POST" th:action="@{/logout}">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    </form>
+
+
+    <form th:action="@{/posts}" th:object="${newPost}" method="POST" enctype="utf8">
+        <div>
+            <label for="content" class="control-label">Content</label>
+            <textarea th:field="*{content}" id="content" name="content"> </textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+
+    <table>
+        <th:block th:each="post : ${currentUser.posts}">
+            <tr>
+                <td th:text="${post.content}">...</td>
+            </tr>
+            <tr>
+                <td th:text="${post.dateCreated}">...</td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+</body>
+</html>

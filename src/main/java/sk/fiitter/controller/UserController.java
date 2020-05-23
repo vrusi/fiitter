@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import sk.fiitter.auth.SecurityService;
 import sk.fiitter.auth.UserService;
 import sk.fiitter.auth.UserValidator;
+import sk.fiitter.model.Post;
 import sk.fiitter.model.User;
 
 @Controller
@@ -41,7 +42,7 @@ public class UserController {
 
         securityService.autoLogin(user.getUsername(), password);
 
-        return "redirect:/welcome";
+        return "redirect:/home";
     }
 
     @GetMapping({"/users/login"})
@@ -55,44 +56,11 @@ public class UserController {
         return "login";
     }
 
-
-    @GetMapping({"/", "/welcome"})
-    public String welcome(Model model) {
-        return "welcome";
+    @GetMapping("/home")
+    public String home(Model model) {
+        var user = securityService.findLoggedInUser();
+        model.addAttribute("currentUser", user);
+        model.addAttribute("newPost", new Post());
+        return "home";
     }
-
-
-    //
-    //    @RequestMapping(value = "/user/registration", method = RequestMethod.GET)
-    //    public String showRegistrationForm(WebRequest request, Model model) {
-    //        model.addAttribute("user", new UserDto());
-    //        //model.addAttribute("user", new User());
-    //        return "registration";
-    //    }
-    //
-    //    @RequestMapping(value = "user/registration", method = RequestMethod.POST)
-    //    public ModelAndView registerUserAccount(@ModelAttribute("user") @Valid UserDto userDto, HttpServletRequest request, Errors errors) {
-    //
-    //        try {
-    //            User registered = userService.registerNewUserAccount(userDao);
-    //        } catch (UserAlreadyExistsException e) {
-    //            ModelAndView mav = new ModelAndView();
-    //            mav.addObject("message", "An account for that username/email already exists.");
-    //            return mav;
-    //        }
-    //
-    //        return new ModelAndView("successRegister", "user", userDto);
-    //    }
-    //
-    //    //@RequestMapping(value = "user/create", method = RequestMethod.POST)
-    //    //public String userCreate(@Valid @ModelAttribute("user") User user,
-    //    //                         BindingResult result,
-    //    //                         ModelMap model) {
-    //    //    if (result.hasErrors()) {
-    //    //        return "error";
-    //    //    }
-    //    //
-    //    //    userRepository.save(user);
-    //    //    return "redirect:/home"
-    //    //}
 }
