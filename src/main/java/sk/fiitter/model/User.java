@@ -36,11 +36,21 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Post> posts;
 
+    @ManyToMany
+    @JoinTable(
+            name = "user_followers",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "follower_id"))
+    Set<User> followers;
+
+    @ManyToMany(mappedBy = "followers")
+    private Set<User> following;
+
+    // getters and setters
     public List<Post> getPosts() {
         return posts;
     }
 
-    // getters and setters
     public long getId() {
         return id;
     }
@@ -96,5 +106,25 @@ public class User implements UserDetails {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public Set<User> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(Set<User> followers) {
+        this.followers = followers;
+    }
+
+    public Set<User> getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(Set<User> following) {
+        this.following = following;
     }
 }

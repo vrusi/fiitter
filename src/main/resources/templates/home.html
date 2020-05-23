@@ -2,7 +2,7 @@
 <html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Home</title>
 </head>
 <body>
 <div sec:authorize="isAuthenticated()">
@@ -12,7 +12,6 @@
     <form id="logoutForm" method="POST" th:action="@{/logout}">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
-
 
     <form th:action="@{/posts}" th:object="${newPost}" method="POST" enctype="utf8">
         <div>
