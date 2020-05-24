@@ -4,11 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 import sk.fiitter.PostRepository;
 import sk.fiitter.auth.SecurityService;
 import sk.fiitter.auth.UserRepository;
@@ -46,7 +44,7 @@ public class PostController {
         var user = securityService.findLoggedInUser();
 
         if (bindingResult.hasErrors()) {
-            return "home";
+            return "index";
         }
 
         post.setDateCreated(LocalDateTime.now());
@@ -54,7 +52,7 @@ public class PostController {
 
         postRepository.save(post);
 
-        return "redirect:/home";
+        return "redirect:/";
     }
 
     @PostMapping("/posts/{postId}/like")

@@ -13,8 +13,6 @@ import sk.fiitter.auth.UserValidator;
 import sk.fiitter.model.Post;
 import sk.fiitter.model.User;
 
-import java.util.ArrayList;
-
 @Controller
 public class UserController {
     @Autowired
@@ -38,7 +36,7 @@ public class UserController {
         return "registration";
     }
 
-    @PostMapping("/users")
+    @PostMapping("/users/new")
     public String registration(@ModelAttribute("user") User user, BindingResult bindingResult) {
         userValidator.validate(user, bindingResult);
 
@@ -52,10 +50,10 @@ public class UserController {
 
         securityService.autoLogin(user.getUsername(), password);
 
-        return "redirect:/home";
+        return "redirect:/";
     }
 
-    @GetMapping({"/users/login"})
+    @GetMapping({"/login"})
     public String login(Model model, String error, String logout) {
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
@@ -66,13 +64,13 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String home(Model model) {
         var user = securityService.findLoggedInUser();
         model.addAttribute("currentUser", user);
         model.addAttribute("posts", postRepository.getHomeFeedByUser(user));
         model.addAttribute("newPost", new Post());
-        return "home";
+        return "index";
     }
 
     @GetMapping(value = "/profiles/{username}")
