@@ -85,6 +85,8 @@ public class UserController {
         boolean isFollowedAlready = user.getFollowers().stream().anyMatch(follower -> follower.getUsername().equals(securityService.findLoggedInUsername()));
         String action = isFollowedAlready ? "Unfollow" : "Follow";
         model.addAttribute("action", action);
+
+        model.addAttribute("currentUser", securityService.findLoggedInUser());
         return "profile";
     }
 

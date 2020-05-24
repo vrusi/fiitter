@@ -22,16 +22,11 @@
         <button type="submit" class="btn btn-success">Submit</button>
     </form>
 
-    <table>
+    <div>
         <th:block th:each="post : ${posts}">
-            <tr>
-                <td th:text="${post.content}">...</td>
-            </tr>
-            <tr>
-                <td th:text="${post.dateCreated}">...</td>
-            </tr>
+            <div th:replace="fragments/common :: post(${post}, ${currentUser})"></div>
         </th:block>
-    </table>
+    </div>
 </div>
 </body>
 </html>

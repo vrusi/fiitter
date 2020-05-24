@@ -47,12 +47,17 @@ public class User implements UserDetails {
     @ManyToMany(mappedBy = "followers")
     private Set<User> following;
 
+    @ManyToMany
+    @JoinTable(
+            name = "liked_posts",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "post_id"))
+    Set<Post> likedPosts;
+
     // getters and setters
     public List<Post> getPosts() {
         return posts;
     }
-
-
 
     public long getId() {
         return id;

@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import sk.fiitter.PostRepository;
 import sk.fiitter.auth.SecurityService;
@@ -50,4 +51,25 @@ public class PostController {
 
         return "redirect:/home";
     }
+
+    @PostMapping("/posts/{postId}/like")
+    public String like(@PathVariable("postId") long postId) {
+        var user = securityService.findLoggedInUser();
+        postRepository.findById(postId).ifPresent(post -> {
+            post.getLikes().add(user);
+            postRepository.save(post);
+        });
+
+        return "home";
+    }
+
+    @PostMapping("/posts/{postId}/unlike")
+    public String unlike(@PathVariable("postId") long postId) {
+        var user = securityService.findLoggedInUser();
+        postRepository.findById(postId).ifPresent(post -> {
+            post.getLikes().remove(user);
+            postRepository.save(post);
+        });
+    }
+
 }

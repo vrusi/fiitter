@@ -13,25 +13,18 @@
         <button type="submit" th:text="${action}">...</button>
     </form>
 
-    <table>
-        <th:block th:each="post : ${user.posts}">
-            <tr>
-                <td th:text="${post.content}">...</td>
-            </tr>
-            <tr>
-                <td th:text="${post.dateCreated}">...</td>
-            </tr>
+    <div>
+        <th:block th:each="post : ${posts}">
+            <div th:replace="fragments/common :: post(${post}, ${currentUser})"></div>
         </th:block>
-    </table>
+    </div>
 
     <p>Followed by:</p>
-    <table>
+    <div>
         <th:block th:each="follower : ${user.followers}">
-            <tr>
-                <td th:text="${follower.username}">...</td>
-            </tr>
+            <p th:text="${follower.username}">...</p>
         </th:block>
-    </table>
+    </div>
 </div>
 </body>
 </html>
