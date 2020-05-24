@@ -2,8 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
 <div class="post" th:fragment="post(post, currentUser)" th:id="__${post.id}__">
-        <p th:text="${post.dateCreated}">...</p>
-        <p th:text="${post.content}">...</p>
+        <div><span th:text="${post.user.username}">...</span></div>
+        <div><span th:text="${post.dateCreated}">...</span></div>
+        <div><span th:text="${post.content}">...</span></div>
 
         <div th:if="${currentUser}">
             <div>

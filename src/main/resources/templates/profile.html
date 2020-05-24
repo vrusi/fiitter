@@ -15,7 +15,7 @@
     </form>
 
     <div>
-        <th:block th:each="post : ${posts}">
+        <th:block th:each="post : ${user.posts}">
             <div th:replace="fragments/common :: post(${post}, ${currentUser})"></div>
         </th:block>
     </div>
