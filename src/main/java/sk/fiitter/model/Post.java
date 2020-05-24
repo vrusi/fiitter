@@ -26,6 +26,7 @@ public class Post {
 
     // constructors
     public Post() {
+
     }
 
     // getters setters
