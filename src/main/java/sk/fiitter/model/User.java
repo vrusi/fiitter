@@ -1,5 +1,6 @@
 package sk.fiitter.model;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -45,6 +46,21 @@ public class User implements UserDetails {
 
     @ManyToMany(mappedBy = "followers")
     private Set<User> following;
+
+    public Set<Post> getLikedPosts() {
+        return likedPosts;
+    }
+
+    public void setLikedPosts(Set<Post> likedPosts) {
+        this.likedPosts = likedPosts;
+    }
+
+    @ManyToMany
+    @JoinTable(
+            name = "liked_posts",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "post_id"))
+    Set<Post> likedPosts;
 
     // getters and setters
     public List<Post> getPosts() {

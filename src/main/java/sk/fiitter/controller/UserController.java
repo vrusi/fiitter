@@ -5,12 +5,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import sk.fiitter.PostRepository;
 import sk.fiitter.auth.SecurityService;
 import sk.fiitter.auth.UserRepository;
 import sk.fiitter.auth.UserService;
 import sk.fiitter.auth.UserValidator;
 import sk.fiitter.model.Post;
 import sk.fiitter.model.User;
+
+import java.util.ArrayList;
 
 @Controller
 public class UserController {
@@ -25,6 +28,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PostRepository postRepository;
 
     @GetMapping("/users/registration")
     public String registration(Model model) {
@@ -64,6 +70,7 @@ public class UserController {
     public String home(Model model) {
         var user = securityService.findLoggedInUser();
         model.addAttribute("currentUser", user);
+        model.addAttribute("posts", postRepository.getHomeFeedByUser(user));
         model.addAttribute("newPost", new Post());
         return "home";
     }
@@ -78,6 +85,8 @@ public class UserController {
         boolean isFollowedAlready = user.getFollowers().stream().anyMatch(follower -> follower.getUsername().equals(securityService.findLoggedInUsername()));
         String action = isFollowedAlready ? "Unfollow" : "Follow";
         model.addAttribute("action", action);
+
+        model.addAttribute("currentUser", securityService.findLoggedInUser());
         return "profile";
     }
 

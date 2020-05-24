@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="post" th:fragment="post(post, currentUser)" th:id="__${post.id}__">
+        <p th:text="${post.dateCreated}">...</p>
+        <p th:text="${post.content}">...</p>
+
+        <div th:if="${currentUser}">
+            <div>
+                <span>[[${#lists.size(post.likes)}]] people like this post.</span>
+            </div>
+            <form class="post-form" th:switch="${post.isLikedBy(currentUser)}"  th:action="@{~/posts/__${post.id}__/__${post.isLikedBy(currentUser) ? 'unlike' : 'like'}__}"  method="POST">
+                <button th:case="${true}" type="submit" class="btn btn-success" >Unlike</button>
+                <button th:case="${false}" type="submit" class="btn btn-success" >Like</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
