@@ -45,11 +45,6 @@ public class UserController {
     @Autowired
     private PostRepository postRepository;
 
-    @GetMapping({"/"})
-    public String welcomeHome(){
-        return "index";
-    }
-
     @GetMapping("/users/registration")
     public String registration(Model model) {
         model.addAttribute("user", new User());
