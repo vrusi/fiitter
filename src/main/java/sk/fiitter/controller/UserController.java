@@ -41,7 +41,7 @@ public class UserController {
         return "registration";
     }
 
-    @PostMapping("/users/registration")
+    @PostMapping("/users")
     public String registration(@ModelAttribute("user") User user, BindingResult bindingResult) {
         userValidator.validate(user, bindingResult);
 
