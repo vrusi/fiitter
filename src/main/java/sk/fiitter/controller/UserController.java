@@ -1,6 +1,9 @@
 package sk.fiitter.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.converter.BufferedImageHttpMessageConverter;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +15,18 @@ import sk.fiitter.auth.UserService;
 import sk.fiitter.auth.UserValidator;
 import sk.fiitter.model.Post;
 import sk.fiitter.model.User;
+
+
+import sk.fiitter.QRGenerator;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+
+import java.awt.image.BufferedImage;
+
+
 
 @Controller
 public class UserController {
@@ -109,4 +124,22 @@ public class UserController {
         userRepository.save(user);
         return "redirect:/profiles/" + username;
     }
+
+    // QRCode implementation, replace value with data (i think) | src = https://www.baeldung.com/java-generating-barcodes-qr-codes
+    @PostMapping(value = "/zxing/qrcode", produces = MediaType.IMAGE_PNG_VALUE)
+    public ResponseEntity<BufferedImage> zxingQRCode(@RequestBody String barcode) throws Exception {
+        return okResponse(QRGenerator.generateQRCodeImage(barcode));
+    }
+
+    // Helper function for QRCode implementation
+    private ResponseEntity<BufferedImage> okResponse(BufferedImage image) {
+        return new ResponseEntity<>(image, HttpStatus.OK);
+    }
+
+    // Helper function for QRCode implementation
+    @Bean
+    public HttpMessageConverter<BufferedImage> createImageHttpMessageConverter() {
+        return new BufferedImageHttpMessageConverter();
+    }
+
 }
