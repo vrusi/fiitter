@@ -29,9 +29,11 @@
             <a class="navbar-brand" href="#">FIIT-ter</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
+            <a class="navbar-brand" th:text="${currentUser.username}"></a>
             <ul class="nav navbar-nav">
                 <li><a th:href="@{/}">Home</a></li>
                 <li><a th:href="@{/profiles/__${currentUser.username}__}" th:text="#{profile}"></a></li>
+                <li><a th:href="@{/logout}" th:text="#{logout}"></a></li>
                 <!--<form class="navbar-form navbar-left">
                     <div class="input-group">
                         <select class="form-control" id="locales" style="width: 100px">

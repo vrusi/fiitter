@@ -40,6 +40,7 @@
                 <li><a th:href="@{/}" th:text="#{home}"></a></li>
                 <li><a th:href="@{/profiles/__${currentUser.username}__}" th:text="#{profile}"></a></li>
 
+
                 <form class="navbar-form navbar-left">
                     <div class="input-group">
                         <select class="form-control" id="locales" style="width: 100px">
@@ -49,6 +50,7 @@
                         </select>
                     </div>
                 </form>
+                <li><a th:href="@{/logout}" th:text="#{logout}"></a></li>
 
 
                 <!--<li><span th:text="#{lang.change}"></span>:
