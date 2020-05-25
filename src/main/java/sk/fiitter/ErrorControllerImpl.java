@@ -8,6 +8,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
 public class ErrorControllerImpl implements ErrorController {
+
     @Override
     public String getErrorPath() {
         return "/error";
@@ -15,10 +16,9 @@ public class ErrorControllerImpl implements ErrorController {
 
     @RequestMapping("/error")
     public String handleError(HttpServletRequest request) {
+
         // get error status
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-
-        // TODO: log error details here
 
         if (status != null) {
             int statusCode = Integer.parseInt(status.toString());
