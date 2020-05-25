@@ -8,6 +8,17 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#locales").change(function () {
+            var selectedOption = $('#locales').val();
+            if (selectedOption != ''){
+                window.location.replace('login?lang=' + selectedOption);
+            }
+        });
+    });
+</script>
+
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <body>
 
@@ -24,28 +35,38 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a th:href="@{/home}">Home</a></li>
-                <li><a th:href="@{/login}">Login</a></li>
-                <li><a th:href="@{/users/registration}">Register</a></li>
+                <li><a th:href="@{/home}" th:text="#{home}"></a></li>
+                <li><a th:href="@{/login}" th:text="#{login}"></a></li>
+                <li><a th:href="@{/users/registration}" th:text="#{register}"></a></li>
+
+                <form class="navbar-form navbar-left">
+                    <div class="input-group">
+                        <select class="form-control" id="locales" style="width: 100px">
+                            <option value=""></option>
+                            <option value="en" th:text="#{lang.eng}"></option>
+                            <option value="fr" th:text="#{lang.sk}"></option>
+                        </select>
+                    </div>
+                </form>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
 
 <div class="container">
-    LOGIN PAGE TO BE
+    <h1 th:text="#{login}"></h1>
     <span> [[${message}]]</span>
     <span> [[${error}]]</span>
 
     <form th:action="@{/login}" method="POST" enctype="utf8">
 
         <div class="form-group">
-            <label for="username">Username:</label>
+            <label for="username" th:text="#{username}">:</label>
             <input name="username" type="text" class="form-control" id="username">
         </div>
 
         <div class="form-group">
-            <label for="password">Password:</label>
+            <label for="password" th:text="#{password}">:</label>
             <input name="password" type="password" class="form-control" id="password">
         </div>
 
@@ -58,7 +79,7 @@
 
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
-        <button type="submit" class="btn btn-success mx-auto">Login</button>
+        <button type="submit" class="btn btn-success mx-auto" th:text="#{login}"></button>
     </form>
 </div>
 
