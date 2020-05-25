@@ -30,13 +30,18 @@ public class UserController {
     @Autowired
     private PostRepository postRepository;
 
+    @GetMapping({"/home"})
+    public String welcomeHome(){
+        return "home";
+    }
+
     @GetMapping("/users/registration")
     public String registration(Model model) {
         model.addAttribute("user", new User());
         return "registration";
     }
 
-    @PostMapping("/users/new")
+    @PostMapping("/users/registration")
     public String registration(@ModelAttribute("user") User user, BindingResult bindingResult) {
         userValidator.validate(user, bindingResult);
 

@@ -1,32 +1,81 @@
 <!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <body>
+
+<nav class="navbar navbar-inverse navbar-sticky-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">FIIT-ter</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a th:href="@{/home}">Home</a></li>
+                <li><a th:href="@{/login}">Login</a></li>
+                <li><a th:href="@{/users/registration}">Register</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+
+<div class="container">
 <form th:action="@{/users}" th:object="${user}" method="POST" enctype="utf8">
+
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" id="username" th:field="*{username}">
+    </div>
+
+    <div class="form-group">
+        <label for="username">Email:</label>
+        <input type="email" class="form-control" id="email" th:field="*{email}">
+    </div>
+
+    <div class="form-group">
+        <label for="username">Password:</label>
+        <input type="password" class="form-control" id="password" th:field="*{password}">
+    </div>
+
+
+
     <div>
-        <label for="username" class="control-label">Username</label>
-        <input th:field="*{username}" id="username"/>
+        <!--<label for="username" class="control-label">Username</label>-->
+        <!--<input th:field="*{username}" id="username"/>-->
         <!--TODO <p th:each="error: ${#fields.errors('username')}"
            TODO th:text="${error}">Validation error</p>-->
     </div>
 
     <div>
-        <label for="email" class="control-label">Email</label>
-        <input type="email" th:field="*{email}" id="email"/>
+        <!--<label for="email" class="control-label">Email</label>-->
+        <!--<input type="email" th:field="*{email}" id="email"/>-->
         <!--TODO <p th:each="error : ${#fields.errors('email')}"
            TODO th:text="${error}">Validation error</p>-->
     </div>
 
     <div>
-        <label for="password" class="control-label">Password</label>
-        <input type="password" th:field="*{password}" id="password"/>
+        <!--<label for="password" class="control-label">Password</label>-->
+        <!--<input type="password" th:field="*{password}" id="password"/>-->
         <!--TODO <p th:each="error : ${#fields.errors('password')}"
            TODO th:text="${error}">Validation error</p>-->
     </div>
 
     <button type="submit" class="btn btn-success">Register</button>
 </form>
-
-<a th:href="@{/login}">Login</a>
-
+</div>
 </body>
 </html>
