@@ -1,9 +1,9 @@
 package sk.fiitter.controller;
 
+import net.glxn.qrgen.QRCode;
+import net.glxn.qrgen.image.ImageType;
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.converter.BufferedImageHttpMessageConverter;
-import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,15 +17,9 @@ import sk.fiitter.model.Post;
 import sk.fiitter.model.User;
 
 
-import sk.fiitter.QRGenerator;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-
-import java.awt.image.BufferedImage;
-
+import java.io.File;
+import java.io.IOException;
+import java.util.Base64;
 
 
 @Controller
@@ -90,7 +84,7 @@ public class UserController {
 
     @GetMapping(value = "/profiles/{username}")
     public String getUserBySimplePathWithPathVariable(
-            @PathVariable("username") String username, Model model) {
+            @PathVariable("username") String username, Model model) throws IOException {
 
         var user = userRepository.findByUsername(username);
         model.addAttribute("user", user);
@@ -100,41 +94,33 @@ public class UserController {
         model.addAttribute("action", action);
 
         model.addAttribute("currentUser", securityService.findLoggedInUser());
+
+        // QRCode generation
+        File file = QRCode.from("www.fiitter.sk/profiles/" + username).to(ImageType.PNG)
+                .withSize(200, 200)
+                .file();
+
+        byte[] fileContent = FileUtils.readFileToByteArray(file);
+        String encodedString = Base64.getEncoder().encodeToString(fileContent);
+
+        model.addAttribute("qrcodecontent", encodedString);
         return "profile";
     }
 
     @PostMapping(value = "/profiles/{username}/follow")
-    public String follow(@PathVariable("username") String username){
+    public String follow(@PathVariable("username") String username) {
         var user = userRepository.findByUsername(username);
         user.getFollowers().add(securityService.findLoggedInUser());
         userRepository.save(user);
         return "redirect:/profiles/" + username;
     }
 
-
     @PostMapping(value = "/profiles/{username}/unfollow")
-    public String unfollow(@PathVariable("username") String username){
+    public String unfollow(@PathVariable("username") String username) {
         var user = userRepository.findByUsername(username);
         user.getFollowers().remove(securityService.findLoggedInUser());
         userRepository.save(user);
         return "redirect:/profiles/" + username;
-    }
-
-    // QRCode implementation, replace value with data (i think) | src = https://www.baeldung.com/java-generating-barcodes-qr-codes
-    @PostMapping(value = "/zxing/qrcode", produces = MediaType.IMAGE_PNG_VALUE)
-    public ResponseEntity<BufferedImage> zxingQRCode(@RequestBody String barcode) throws Exception {
-        return okResponse(QRGenerator.generateQRCodeImage(barcode));
-    }
-
-    // Helper function for QRCode implementation
-    private ResponseEntity<BufferedImage> okResponse(BufferedImage image) {
-        return new ResponseEntity<>(image, HttpStatus.OK);
-    }
-
-    // Helper function for QRCode implementation
-    @Bean
-    public HttpMessageConverter<BufferedImage> createImageHttpMessageConverter() {
-        return new BufferedImageHttpMessageConverter();
     }
 
 }

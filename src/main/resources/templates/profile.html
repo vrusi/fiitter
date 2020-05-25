@@ -36,6 +36,9 @@
 </nav>
 
 <div class="container">
+    <div>
+        <img th:src="*{'data:image/png;base64,'+qrcodecontent}"/>
+    </div>
     <p th:text="${user.username}">...</p>
     <p th:text="${user.email}"></p>
 
