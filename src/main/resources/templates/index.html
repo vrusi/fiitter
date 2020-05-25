@@ -82,5 +82,25 @@
         </div>
 
 </div>
+    <script>
+        $(document).ready(function () {
+            $(document).on('submit', 'form.post-form', function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: $(e.target).attr('action'),
+                    type: 'post',
+                    data : null,
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    success: function (response) {
+                        $(e.target).closest('div.post').replaceWith(response);
+                        postForms.refresh();
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
