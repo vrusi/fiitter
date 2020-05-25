@@ -83,11 +83,9 @@
         <div class="col-sm-2 mx-auto">
             <h2>Followed by:</h2>
             <div class="container">
-                <ul class="list-group">
-                    <th:block th:each="follower : ${currentUser.followers}">
-                        <li class="list-group-item"><h3 th:text="${follower.username}">...</h3></li>
-                    </th:block>
-                </ul>
+                <th:block th:each="follower : ${user.followers}">
+                    <h3 th:text="${follower.username}">...</h3>
+                </th:block>
             </div>
         </div>
     </div>
