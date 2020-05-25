@@ -2,19 +2,28 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
 <div class="post" th:fragment="post(post, currentUser)" th:id="__${post.id}__">
-        <div><span th:text="${post.user.username}">...</span></div>
-        <div><span th:text="${post.dateCreated}">...</span></div>
-        <div><span th:text="${post.content}">...</span></div>
-
-        <div th:if="${currentUser}">
-            <div>
-                <span>[[${#lists.size(post.likes)}]] people like this post.</span>
-            </div>
-            <form class="post-form" th:switch="${post.isLikedBy(currentUser)}"  th:action="@{~/posts/__${post.id}__/__${post.isLikedBy(currentUser) ? 'unlike' : 'like'}__}"  method="POST">
-                <button th:case="${true}" type="submit" class="btn btn-success" >Unlike</button>
-                <button th:case="${false}" type="submit" class="btn btn-success" >Like</button>
-            </form>
+    <div class="media">
+        <div class="media-left">
+            <i class='fas fa-user-alt' style='font-size:48px'></i>
         </div>
+        <div class="media-body">
+            <h4 class="media-heading" th:text="${currentUser.username}"></h4>
+            <h5 th:text="${post.dateCreated}"></h5>
+
+            <p th:text="${post.content}"></p>
+
+            <div th:if="${currentUser}">
+                <div>
+                    <span>[[${#lists.size(post.likes)}]] people like this post.</span>
+                </div>
+                <form class="post-form" th:switch="${post.isLikedBy(currentUser)}"  th:action="@{~/posts/__${post.id}__/__${post.isLikedBy(currentUser) ? 'unlike' : 'like'}__}"  method="POST">
+                    <button th:case="${true}" type="submit" class="btn btn-success" >Unlike</button>
+                    <button th:case="${false}" type="submit" class="btn btn-success" >Like</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
     </div>
 </body>
 </html>

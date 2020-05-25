@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
 
 
@@ -28,36 +29,53 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a th:href="@{/}">Home</a></li>
-                <li><a th:href="@{/login}">Login</a></li>
-                <li><a th:href="@{/users/registration}">Register</a></li>
+                <li><a th:href="@{/profiles/__${currentUser.username}__}" th:text="#{profile}"></a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
 
-<div class="container">
-    <div>
-        <img th:src="*{'data:image/png;base64,'+qrcodecontent}"/>
-    </div>
-    <p th:text="${user.username}">...</p>
-    <p th:text="${user.email}"></p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-2 mx-auto"></div>
+        <div class="col-sm-8 mx-auto">
+            <div class="container">
+                <div class="media">
+                    <div class="media-left">
+                        <i class='fas fa-user-alt' style='font-size:150px'></i>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading" th:text="${currentUser.username}"></h3>
+                        <h4 class="media-heading" th:text="${currentUser.email}"></h4>
+                        <form sec:authorize="isAuthenticated()" th:action="${action} == 'Follow' ? @{~/profiles/__${user.username}__/follow} : @{~/profiles/__${user.username}__/unfollow}" method="POST">
+                            <button  class="btn btn-primary mt-5" type="submit" th:text="${action}">...</button>
+                        </form>
+                    </div>
+                    <div class="media-right">
+                        <img th:src="*{'data:image/png;base64,'+qrcodecontent}" style="width: 150px"/>
+                    </div>
+                </div>
 
-    <form sec:authorize="isAuthenticated()" th:action="${action} == 'Follow' ? @{~/profiles/__${user.username}__/follow} : @{~/profiles/__${user.username}__/unfollow}" method="POST">
-        <button type="submit" th:text="${action}">...</button>
-    </form>
 
-    <div>
-        <th:block th:each="post : ${user.posts}">
-            <div th:replace="fragments/common :: post(${post}, ${currentUser})"></div>
-        </th:block>
-    </div>
+                <div>
+                    <h1 th:text="#{statuses}"></h1>
+                    <th:block th:each="post : ${user.posts}">
+                        <div th:replace="fragments/common :: post(${post}, ${currentUser})"></div>
+                    </th:block>
+                </div>
 
-    <p>Followed by:</p>
-    <div>
-        <th:block th:each="follower : ${user.followers}">
-            <p th:text="${follower.username}">...</p>
-        </th:block>
-    </div>
+            </div>
+
+        </div>
+        <div class="col-sm-2 mx-auto">
+            <h2>Followed by:</h2>
+            <div class="container">
+                <th:block th:each="follower : ${currentUser.followers}">
+                    <h3 th:text="${follower.username}">...</h3>
+                </th:block>
+            </div>
+        </div>
+
 </div>
 </body>
 </html>
