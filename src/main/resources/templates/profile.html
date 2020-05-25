@@ -32,7 +32,7 @@
             <ul class="nav navbar-nav">
                 <li><a th:href="@{/}">Home</a></li>
                 <li><a th:href="@{/profiles/__${currentUser.username}__}" th:text="#{profile}"></a></li>
-                <form class="navbar-form navbar-left">
+                <!--<form class="navbar-form navbar-left">
                     <div class="input-group">
                         <select class="form-control" id="locales" style="width: 100px">
                             <option value=""></option>
@@ -40,7 +40,7 @@
                             <option value="fr" th:text="#{lang.sk}"></option>
                         </select>
                     </div>
-                </form>
+                </form>-->
 
             </ul>
         </div><!--/.nav-collapse -->
@@ -71,15 +71,6 @@
 
                 <div>
                     <h1 th:text="#{statuses}"></h1>
-                    <form th:action="@{/posts}" th:object="${newPost}" method="POST" enctype="utf8">
-                        <div class="input-group">
-                            <input th:value="*{content}" type="text" id="content" name="content" class="form-control" placeholder="@{newStatus}">
-                            <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit" th:text="#{postStatus}"></button>
-                            </div>
-                        </div>
-                    </form>
-
                     <th:block th:each="post : ${user.posts}">
                         <div th:replace="fragments/common :: post(${post}, ${currentUser})"></div>
                     </th:block>
@@ -122,7 +113,7 @@
         $("#locales").change(function () {
             var selectedOption = $('#locales').val();
             if (selectedOption != ''){
-                window.location.replace('home?lang=' + selectedOption);
+                window.location.replace('profiles/?lang=' + selectedOption);
             }
         });
     });

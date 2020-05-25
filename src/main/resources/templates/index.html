@@ -14,7 +14,7 @@
         $("#locales").change(function () {
             var selectedOption = $('#locales').val();
             if (selectedOption != ''){
-                window.location.replace('home?lang=' + selectedOption);
+                window.location.replace('?lang=' + selectedOption);
             }
         });
     });
@@ -70,6 +70,15 @@
         <div class="col-sm-8 mx-auto">
 
             <div class="container">
+                <h1 th:text="#{postStatus}"></h1>
+                <form th:action="@{/posts}" th:object="${newPost}" method="POST" enctype="utf8">
+                    <div class="input-group">
+                        <input th:value="*{content}" type="text" id="content" name="content" class="form-control" th:placeholder="#{newStatus}">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit" th:text="#{postStatus}"></button>
+                        </div>
+                    </div>
+                </form>
                 <h1 th:text="#{feed}"></h1>
                 <th:block th:each="post : ${posts}">
                     <div th:replace="fragments/common :: post(${post}, ${currentUser})"></div>
