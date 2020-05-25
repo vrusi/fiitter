@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
 
 <script type="text/javascript">
@@ -19,7 +20,7 @@
     });
 </script>
 
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <body>
 
 <nav class="navbar navbar-inverse navbar-sticky-top">
@@ -34,10 +35,10 @@
             <a class="navbar-brand" href="#">FIIT-ter</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
+            <a class="navbar-brand" th:text="${currentUser.username}"></a>
             <ul class="nav navbar-nav">
                 <li><a th:href="@{/}" th:text="#{home}"></a></li>
-                <li><a th:href="@{/login}" th:text="#{login}"></a></li>
-                <li><a th:href="@{/users/registration}" th:text="#{register}"></a></li>
+                <li><a th:href="@{/profile/__${currentUser.username}__}" th:text="#{profile}"></a></li>
 
                 <form class="navbar-form navbar-left">
                     <div class="input-group">
@@ -62,13 +63,42 @@
     </div>
 </nav>
 
-<div class="container">
-    <h1 th:text="#{greeting}"></h1>
-    <h2 th:text="#{description}"></h2>
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-sm-2 mx-auto"></div>
+        <div class="col-sm-8 mx-auto">
+
+
+            <div class="media">
+                <div class="media-left">
+                    <i class='fas fa-user-alt' style='font-size:150px'></i>
+                </div>
+                <div class="media-body">
+                    <h3 class="media-heading" th:text="${currentUser.username}"></h3>
+                    <h4 class="media-heading" th:text="${currentUser.email}"></h4>
+                </div>
+            </div>
+
+
+            <div class="container">
+                <h1 th:text="#{feed}"></h1>
+                <th:block th:each="post : ${posts}">
+                    <div th:replace="fragments/common :: post(${post}, ${currentUser})"></div>
+                </th:block>
+            </div>
+
+        </div>
+        <div class="col-sm-2 mx-auto">
+            <h2>Followed by:</h2>
+            <div>
+                <th:block th:each="follower : ${currentUser.followers}">
+                    <h3 th:text="${follower.username}">...</h3>
+                </th:block>
+            </div>
+
+        </div>
 
 </div>
-
-
-
 </body>
 </html>
