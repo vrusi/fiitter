@@ -38,7 +38,7 @@
             <a class="navbar-brand" th:text="${currentUser.username}"></a>
             <ul class="nav navbar-nav">
                 <li><a th:href="@{/}" th:text="#{home}"></a></li>
-                <li><a th:href="@{/profile/__${currentUser.username}__}" th:text="#{profile}"></a></li>
+                <li><a th:href="@{/profiles/__${currentUser.username}__}" th:text="#{profile}"></a></li>
 
                 <form class="navbar-form navbar-left">
                     <div class="input-group">
@@ -100,5 +100,25 @@
         </div>
 
 </div>
+    <script>
+        $(document).ready(function () {
+            $(document).on('submit', 'form.post-form', function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: $(e.target).attr('action'),
+                    type: 'post',
+                    data : null,
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    success: function (response) {
+                        $(e.target).closest('div.post').replaceWith(response);
+                        postForms.refresh();
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
