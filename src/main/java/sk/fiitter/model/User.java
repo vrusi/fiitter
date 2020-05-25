@@ -1,6 +1,5 @@
 package sk.fiitter.model;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

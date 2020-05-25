@@ -1,0 +1,246 @@
+commit 133c34be4ecf354bb7428ecb4b9fa6e0ea91ca80
+Merge: 8e05495 a640e50
+Author: cugi143 <cugino.macuga@gmail.com>
+Date:   Mon May 25 14:55:09 2020 +0200
+
+    Merge branch 'master' of https://github.com/vrusi/fiitter
+
+commit 8e05495c6e275d1275a818d84803d13268b4ed20
+Author: cugi143 <cugino.macuga@gmail.com>
+Date:   Mon May 25 14:54:47 2020 +0200
+
+    user feed design changes
+
+commit a640e5057e2d7034014985c3e4d5feebd16cd809
+Author: vrusi <v.rusinkova97@gmail.com>
+Date:   Mon May 25 14:51:04 2020 +0200
+
+    prevent default behavior with likes/unlikes
+
+commit 3755031406930f6db7ca1bec8756de4ebd66162c
+Merge: a06907b a14f3be
+Author: vrusi <v.rusinkova97@gmail.com>
+Date:   Mon May 25 14:46:04 2020 +0200
+
+    Merge branch 'master' of github.com:vrusi/fiitter
+
+commit a06907b079012279be20f784d8a7c77d1195ee2c
+Author: vrusi <v.rusinkova97@gmail.com>
+Date:   Mon May 25 14:45:39 2020 +0200
+
+    Add list of all users to /profiles
+
+commit a14f3bea6875470e2d1e709fae36a084d987da0c
+Merge: a5f7ff0 c52ca33
+Author: cugi143 <cugino.macuga@gmail.com>
+Date:   Mon May 25 14:30:12 2020 +0200
+
+    Merge branch 'master' of https://github.com/vrusi/fiitter
+
+commit a5f7ff0b688d49175bed41eec4856010373160f3
+Author: cugi143 <cugino.macuga@gmail.com>
+Date:   Mon May 25 14:30:00 2020 +0200
+
+    profile design changes
+
+commit c52ca3384129e65b492b0b8c94a50b46bbdcac5d
+Author: vrusi <v.rusinkova97@gmail.com>
+Date:   Mon May 25 14:27:17 2020 +0200
+
+    Add QR codes with profile url to user profiles
+
+commit 80ae129917f7ebff69991a4b55f5b72ac25ca64b
+Author: vrusi <v.rusinkova97@gmail.com>
+Date:   Mon May 25 13:22:44 2020 +0200
+
+    fix get mapping for root
+
+commit 2a5510a0342bf27293824167103c3b41b03c54d3
+Author: vrusi <v.rusinkova97@gmail.com>
+Date:   Mon May 25 13:20:38 2020 +0200
+
+    rename home to index
+
+commit 446c94bb1222ce3f16ebe7ad9361f6c366615efc
+Merge: 6e238de 3dda3ba
+Author: cugi143 <cugino.macuga@gmail.com>
+Date:   Mon May 25 12:44:40 2020 +0200
+
+    Merge branch 'master' of https://github.com/vrusi/fiitter
+
+commit 6e238de6d24267ce598988483cd6709b06ca781a
+Author: cugi143 <cugino.macuga@gmail.com>
+Date:   Mon May 25 12:43:51 2020 +0200
+
+    imported QRCode support and basic functions
+
+commit 3dda3bad6c58ac6dcca9202c3f37f94035dd1514
+Merge: 43eb2a0 ecbe17a
+Author: Veronika Rusinková <v.rusinkova97@gmail.com>
+Date:   Mon May 25 12:34:44 2020 +0200
+
+    Merge pull request #6 from vrusi/fixes
+    
+    Fix bugs
+
+commit ecbe17ad972ff71a739916b5542249a75bf2e46c
+Author: vrusi <v.rusinkova97@gmail.com>
+Date:   Mon May 25 12:33:46 2020 +0200
+
+    Fix bugs
+
+commit 43eb2a0db08ab87056f31a5ea08d12e36bbafe2e
+Author: cugi143 <cugino.macuga@gmail.com>
+Date:   Mon May 25 12:09:52 2020 +0200
+
+    home page locale language fix
+
+commit 6ec1ebad86962d1586fa024a21d610919b94a89b
+Author: cugi143 <cugino.macuga@gmail.com>
+Date:   Mon May 25 11:57:52 2020 +0200
+
+    home page quick fix
+
+commit dc86d24dd6b63d6d66a667245abdb50bfb6a8a92
+Author: cugi143 <cugino.macuga@gmail.com>
+Date:   Mon May 25 11:53:13 2020 +0200
+
+    home page design and start of locale language
+
+commit 8d8f9ec629ecb4940a0d19046e68bf232af83fe3
+Merge: 16fedfa b02cef4
+Author: Veronika Rusinková <v.rusinkova97@gmail.com>
+Date:   Sun May 24 23:12:12 2020 +0200
+
+    Merge pull request #5 from vrusi/errors
+    
+    Errors
+
+commit b02cef4cc426ec6f65166d7b3aef6f485963c4f7
+Author: vrusi <v.rusinkova97@gmail.com>
+Date:   Sun May 24 23:10:42 2020 +0200
+
+    Change link to /index to link to /
+
+commit 74c46c4d7e2f89d67115b6f3e0766a451e281790
+Author: vrusi <v.rusinkova97@gmail.com>
+Date:   Sun May 24 23:00:48 2020 +0200
+
+    change home.html to index.html
+
+commit 16fedfaeb27f03250db3693649cface1dfbd9a7e
+Merge: b9cf08c 4f9c20e
+Author: Veronika Rusinková <v.rusinkova97@gmail.com>
+Date:   Sun May 24 20:53:39 2020 +0200
+
+    Merge pull request #4 from vrusi/feed
+    
+    Feed
+
+commit 4f9c20e6d32a1912d7274f531d2711707cfcf905
+Author: vrusi <v.rusinkova97@gmail.com>
+Date:   Sun May 24 19:52:01 2020 +0200
+
+    Add like/unlike with AJAX
+
+commit a4dc2a87895f28f29efebd8766e79e462b99cecb
+Author: vrusi <v.rusinkova97@gmail.com>
+Date:   Sun May 24 18:09:04 2020 +0200
+
+    Add like/unlike buttons to posts via thymeleaf fragments
+
+commit dea3f899757dad38594fcceb4f75867de9b259f1
+Author: vrusi <v.rusinkova97@gmail.com>
+Date:   Sat May 23 23:51:30 2020 +0200
+
+    Add home feed
+
+commit b9cf08c53f8194c3a9f98940a175d1232ea346b3
+Merge: 56b5798 94fba75
+Author: Veronika Rusinková <v.rusinkova97@gmail.com>
+Date:   Sat May 23 22:21:46 2020 +0200
+
+    Merge pull request #3 from vrusi/follow
+    
+    Add follow/unfollow
+
+commit 94fba752488705c41bbc37cf23cf151496120bb9
+Author: vrusi <v.rusinkova97@gmail.com>
+Date:   Sat May 23 17:32:27 2020 +0200
+
+    Add follow/unfollow
+
+commit 56b5798c0917a492974d658f4e9c584288916e17
+Merge: 3331a8b 5d0ae0a
+Author: Veronika Rusinková <v.rusinkova97@gmail.com>
+Date:   Sat May 23 12:36:16 2020 +0200
+
+    Merge pull request #2 from vrusi/posts
+    
+    Posts
+
+commit 5d0ae0a6643beb16284837e551704eb16e5a6af4
+Author: vrusi <v.rusinkova97@gmail.com>
+Date:   Sat May 23 01:28:16 2020 +0200
+
+    Post creation
+
+commit d593af34ad03e534a559c0573bdd36bb262d76a4
+Author: vrusi <v.rusinkova97@gmail.com>
+Date:   Sat May 23 00:21:29 2020 +0200
+
+    WIP posts
+
+commit 3331a8b362107e2d151de9b3ebdb7f333362c2b0
+Merge: 63f789a ca4f1fb
+Author: Veronika Rusinková <v.rusinkova97@gmail.com>
+Date:   Sat May 16 01:47:55 2020 +0200
+
+    Merge pull request #1 from vrusi/users
+    
+    create user registration, login, logout
+
+commit ca4f1fb64f1b5260badf5ac5c4066d5a9662c530
+Merge: 4b634b2 bc82638
+Author: vrusi <v.rusinkova97@gmail.com>
+Date:   Fri May 15 22:10:19 2020 +0200
+
+    Resolve merge conflicts
+
+commit bc82638593946cc39d77d9643793c7d5c0400a23
+Author: vrusi <v.rusinkova97@gmail.com>
+Date:   Fri May 15 21:14:11 2020 +0200
+
+    WIP: Users registration/login
+
+commit 63f789ad45af871c2dea66c8ca15f66c62ffed40
+Author: Veronika Rusinková <v.rusinkova97@gmail.com>
+Date:   Fri May 15 18:09:35 2020 +0200
+
+    Update README.md
+    
+    specify versions of spring boot and java
+
+commit 4b634b2d033bdda489918e5651951ffea9a39044
+Author: vrusi <v.rusinkova97@gmail.com>
+Date:   Fri May 15 17:51:50 2020 +0200
+
+    test
+
+commit a1ea2447eff1d62ae8c51263bf671ae72773fa73
+Author: vrusi <v.rusinkova97@gmail.com>
+Date:   Fri May 15 13:31:34 2020 +0200
+
+    Fix typo in class name
+
+commit 822790b4c6993f6f54dce55d29ddc832b8ea43ff
+Author: vrusi <v.rusinkova97@gmail.com>
+Date:   Fri May 15 13:30:33 2020 +0200
+
+    Add README.md
+
+commit 4f27e0366d372c7f698a64a7c6f8f29cd8bc0465
+Author: vrusi <v.rusinkova97@gmail.com>
+Date:   Fri May 15 13:25:19 2020 +0200
+
+    Initial commit

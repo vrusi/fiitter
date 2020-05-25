@@ -1,4 +1,4 @@
-package sk.fiitter;
+package sk.fiitter.controller;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
