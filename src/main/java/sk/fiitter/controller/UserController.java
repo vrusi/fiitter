@@ -20,6 +20,7 @@ import sk.fiitter.model.User;
 import java.io.File;
 import java.io.IOException;
 import java.util.Base64;
+import java.util.List;
 
 
 @Controller
@@ -80,6 +81,13 @@ public class UserController {
         model.addAttribute("posts", postRepository.getHomeFeedByUser(user));
         model.addAttribute("newPost", new Post());
         return "index";
+    }
+
+    @GetMapping("/profiles")
+    public String profiles(Model model) {
+        List<User> allUsers = userRepository.findAll();
+        model.addAttribute("users", allUsers);
+        return "profiles";
     }
 
     @GetMapping(value = "/profiles/{username}")
