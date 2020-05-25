@@ -7,10 +7,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import sk.fiitter.PostRepository;
-import sk.fiitter.auth.SecurityService;
-import sk.fiitter.auth.UserRepository;
 import sk.fiitter.model.Post;
+import sk.fiitter.repository.PostRepository;
+import sk.fiitter.repository.UserRepository;
+import sk.fiitter.service.SecurityService;
 
 import java.time.LocalDateTime;
 

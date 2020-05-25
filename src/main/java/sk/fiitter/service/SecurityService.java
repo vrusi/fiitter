@@ -1,4 +1,4 @@
-package sk.fiitter.auth;
+package sk.fiitter.service;
 
 import sk.fiitter.model.User;
 

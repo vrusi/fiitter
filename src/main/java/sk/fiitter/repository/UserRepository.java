@@ -1,4 +1,4 @@
-package sk.fiitter.auth;
+package sk.fiitter.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import sk.fiitter.model.User;

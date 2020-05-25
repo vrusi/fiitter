@@ -6,8 +6,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import sk.fiitter.model.User;
-
-import javax.validation.Valid;
+import sk.fiitter.service.UserService;
 
 @Component
 public class UserValidator implements Validator {
