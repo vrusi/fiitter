@@ -45,9 +45,9 @@ public class UserController {
     @Autowired
     private PostRepository postRepository;
 
-    @GetMapping({"/home"})
+    @GetMapping({"/"})
     public String welcomeHome(){
-        return "home";
+        return "index";
     }
 
     @GetMapping("/users/registration")
